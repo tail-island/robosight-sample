@@ -34,9 +34,9 @@
                                                                             (:center friend)))}
                        1 {:function "shoot"   :parameter (+ (* (rand) 5.0) 5.0)}
                        2 {:function "turn-to" :parameter (+ (anti-angle (angle (:center friend))) (- (rand Math/PI) (/ Math/PI 2)))}
-                       3 {:function "forward" :parameter 1.0}
-                       4 {:function "forward" :parameter 1.0}
-                       5 {:function "forward" :parameter 1.0}
+                       3 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       4 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       5 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
                        (let [anti-velocity-angle (anti-angle (angle (:velocity friend)))]
                          (if (> (Math/abs (- (:direction friend) anti-velocity-angle)) epsilon)
                            {:function "turn-to" :parameter anti-velocity-angle}
