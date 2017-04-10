@@ -26,17 +26,22 @@
        (let [[friends enemies] (json/read-str state-string :key-fn keyword)]
          (->> friends
               (map (fn [friend]
-                     (case (mod turn 11)
-                       0 {:function "turn-to" :parameter (angle (matrix/sub (:center (->> enemies
-                                                                                          (filter #(> (:hp %) 0.0))
-                                                                                          (sort-by :hp)
-                                                                                          (first)))
-                                                                            (:center friend)))}
-                       1 {:function "shoot"   :parameter (+ (* (rand) 5.0) 5.0)}
-                       2 {:function "turn-to" :parameter (+ (anti-angle (angle (:center friend))) (- (rand Math/PI) (/ Math/PI 2)))}
-                       3 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
-                       4 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
-                       5 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                     (case (mod turn 21)
+                       0  {:function "turn-to" :parameter (angle (matrix/sub (:center (->> enemies
+                                                                                           (filter #(> (:hp %) 0.0))
+                                                                                           (sort-by :hp)
+                                                                                           (first)))
+                                                                             (:center friend)))}
+                       1  {:function "shoot"   :parameter (+ (* (rand) 5.0) 5.0)}
+                       2  {:function "turn-to" :parameter (+ (anti-angle (angle (:center friend))) (- (rand Math/PI) (/ Math/PI 2)))}
+                       3  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       4  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       5  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       6  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       7  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       8  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       9  {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
+                       10 {:function "forward" :parameter (+ (* (rand) 0.5) 0.5)}
                        (let [anti-velocity-angle (anti-angle (angle (:velocity friend)))]
                          (if (> (Math/abs (- (:direction friend) anti-velocity-angle)) epsilon)
                            {:function "turn-to" :parameter anti-velocity-angle}
